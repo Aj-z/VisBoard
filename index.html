@@ -295,6 +295,32 @@
 
     // Initialize board
     renderBoard();
+
+    document.addEventListener('DOMContentLoaded', () => {
+  const logoItems = document.querySelectorAll('.logo-item');
+
+  logoItems.forEach(item => {
+    const dropdown = item.querySelector('.dropdown');
+    if (!dropdown) return;
+
+    item.addEventListener('click', (e) => {
+      e.stopPropagation(); // don’t close immediately
+
+      // Close any other open dropdowns
+      document.querySelectorAll('.dropdown.show').forEach(open => {
+        if (open !== dropdown) open.classList.remove('show');
+      });
+
+      // Toggle this dropdown
+      dropdown.classList.toggle('show');
+    });
+  });
+
+  // Close dropdowns when tapping outside
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown.show').forEach(open => open.classList.remove('show'));
+    });
+  });
   </script>
 </body>
 </html>
