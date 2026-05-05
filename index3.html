@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alvin Loria</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --v:#b60acb;
+  --vl:#a78bfa;
+  --vs:rgba(124,58,237,0.06);
+  --vb:rgba(124,58,237,0.12);
+  --white:#fff;
+  --g50:#fafafa;
+  --g100:#f4f4f5;
+  --g200:#e4e4e7;
+  --g400:#a1a1aa;
+  --g600:#52525b;
+  --g800:#27272a;
+  --g900:#18181b;
+  --serif:'Playfair Display',serif;
+  --sans:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:#fff;color:var(--g900);overflow-x:hidden}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 6%;
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(124,58,237,0.07);
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 1px 20px rgba(124,58,237,0.06)}
+.nav-logo{font-family:var(--serif);font-size:1.15rem;color:var(--g900);letter-spacing:-.3px}
+.nav-logo em{color:var(--v);font-style:italic}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--g400);text-decoration:none;transition:color .2s;letter-spacing:.2px}
+.nav-links a:hover{color:var(--v)}
+.nav-pill{background:var(--vs);color:var(--v);border:1px solid var(--vb);font-size:.8rem;font-weight:600;padding:7px 16px;border-radius:20px;text-decoration:none;transition:all .2s}
+.nav-pill:hover{background:var(--vb)}
+.ham{display:none;flex-direction:column;gap:4px;cursor:pointer}
+.ham span{width:20px;height:1.5px;background:var(--g600);border-radius:2px}
+.mob{display:none;position:fixed;top:62px;left:0;right:0;background:#fff;border-bottom:1px solid var(--g100);padding:18px 6%;z-index:199;flex-direction:column;gap:14px}
+.mob.open{display:flex}
+.mob a{font-size:.9rem;color:var(--g600);text-decoration:none;font-weight:500}
+
+/* ─── HERO ─── */
+#home{
+  min-height:100vh;display:flex;align-items:center;
+  padding:90px 6% 60px;
+  background:#fff;
+  position:relative;overflow:hidden;
+}
+.hero-blob{
+  position:absolute;top:-80px;right:-80px;
+  width:600px;height:600px;
+  background:radial-gradient(circle at 40% 40%,rgba(124,58,237,0.05) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-blob2{
+  position:absolute;bottom:-100px;left:5%;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(124,58,237,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{
+  max-width:1100px;margin:0 auto;width:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:60px;
+}
+/* LEFT */
+.hl{flex:1;max-width:520px;position:relative;z-index:1}
+.hero-chip{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--vs);color:var(--v);border:1px solid var(--vb);
+  font-size:.72rem;font-weight:600;padding:5px 13px;border-radius:20px;margin-bottom:22px;
+  letter-spacing:.3px;
+}
+.hero-chip .dot{width:5px;height:5px;background:var(--v);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h1.hname{
+  font-family:var(--serif);
+  font-size:clamp(3rem,5.5vw,4.5rem);
+  font-weight:700;line-height:1.02;
+  letter-spacing:-1px;color:var(--g900);
+  margin-bottom:10px;
+}
+h1.hname em{color:var(--v);font-style:italic}
+.hrole{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--g400);font-weight:400;margin-bottom:20px;letter-spacing:.1px}
+.hdesc{font-size:.92rem;color:var(--g600);line-height:1.72;margin-bottom:30px;max-width:420px}
+.hbtns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.btn-v{background:var(--v);color:#fff;font-size:.84rem;font-weight:600;padding:11px 22px;border-radius:22px;text-decoration:none;transition:all .2s;box-shadow:0 4px 18px rgba(124,58,237,0.2)}
+.btn-v:hover{background:#6d28d9;transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,58,237,0.25)}
+.btn-o{background:#fff;color:var(--v);border:1.5px solid var(--vb);font-size:.84rem;font-weight:600;padding:11px 22px;border-radius:22px;text-decoration:none;transition:all .2s}
+.btn-o:hover{background:var(--vs);transform:translateY(-2px)}
+.hsocials{display:flex;gap:10px}
+.hsoc{width:34px;height:34px;border-radius:50%;border:1px solid var(--g200);display:flex;align-items:center;justify-content:center;color:var(--g400);font-size:.75rem;font-weight:700;text-decoration:none;transition:all .2s;letter-spacing:0}
+.hsoc:hover{border-color:var(--vl);color:var(--v);background:var(--vs)}
+/* RIGHT */
+.hr{position:relative;flex-shrink:0}
+.photo-frame{
+  width:710px;height:750px;border-radius:28px;
+  overflow:hidden;position:relative;
+  border:1.5px solid rgba(124,58,237,0.1);
+  box-shadow:0 20px 60px rgba(124,58,237,0.1),0 2px 12px rgba(0,0,0,0.04);
+}
+.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(20%)}
+.photo-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;background:linear-gradient(145deg,var(--vs),rgba(124,58,237,0.03));
+  color:var(--vl);font-size:3rem;
+}
+.photo-placeholder p{font-size:.78rem;color:var(--g400);text-align:center;padding:0 20px;line-height:1.5}
+.ftag{
+  position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
+  background:#fff;border:1px solid rgba(124,58,237,0.15);
+  border-radius:12px;padding:9px 16px;
+  font-size:.73rem;font-weight:600;color:var(--g800);
+  box-shadow:0 4px 16px rgba(0,0,0,0.06);white-space:nowrap;
+}
+.ftag span{color:var(--v)}
+.ftag2{
+  position:absolute;top:-12px;right:-12px;
+  background:var(--vs);border:1px solid var(--vb);
+  border-radius:12px;padding:8px 13px;
+  font-size:.7rem;font-weight:700;color:var(--v);
+  letter-spacing:.5px;text-transform:uppercase;
+}
+
+/* ─── DIVIDER ─── */
+.divider{height:1px;background:linear-gradient(to right,transparent,var(--g200),transparent);margin:0 6%}
+
+/* ─── VISION BOARD SECTION ─── */
+#vision{padding:80px 6%;background:#fff}
+.sec-label{font-size:.7rem;font-weight:700;color:var(--v);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.sec-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--g900);margin-bottom:10px;line-height:1.1}
+.sec-sub{font-size:.9rem;color:var(--g400);line-height:1.6;max-width:480px}
+.sec-hd{margin-bottom:44px}
+
+/* masonry grid */
+.vision-masonry{
+  columns:4;column-gap:14px;
+  max-width:1100px;margin:0 auto;
+}
+.vm-item{
+  break-inside:avoid;
+  border-radius:18px;
+  margin-bottom:14px;
+  border:1.5px solid var(--g100);
+  background:#fff;
+  overflow:hidden;
+  transition:box-shadow .2s,transform .2s;
+}
+.vm-item:hover{box-shadow:0 8px 32px rgba(124,58,237,0.09);transform:translateY(-3px)}
+.vm-img{width:100%;display:block;border-radius:0}
+.vm-body{padding:14px 16px 16px}
+.vm-label{font-size:.67rem;font-weight:700;color:var(--v);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.vm-text{font-size:.82rem;color:var(--g600);line-height:1.6}
+.vm-quote{
+  font-family:var(--serif);font-style:italic;
+  font-size:.92rem;color:var(--g800);line-height:1.6;
+  padding:18px 20px;
+}
+.vm-quote::before{content:'\201C';color:var(--vl);font-size:2rem;line-height:0;vertical-align:-.4em;margin-right:3px}
+.vm-mission{
+  background:var(--vs);border-color:var(--vb);
+  padding:20px;cursor:pointer;
+}
+.vm-mission .vm-label{color:var(--v)}
+.vm-mission .vm-text{font-size:.85rem;color:var(--g800)}
+.vm-mission .tldr{font-weight:600;color:var(--v);font-size:.82rem;margin-bottom:8px;display:block}
+.vm-pill-row{display:flex;flex-wrap:wrap;gap:6px;padding:14px 16px}
+.vm-pill{background:var(--vs);color:var(--v);border:1px solid var(--vb);font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:12px}
+.vm-paper{background:var(--g50);border-color:var(--g200)}
+.vm-paper .vm-body{font-size:.82rem;color:var(--g600);line-height:1.8}
+.vm-dark{background:var(--g900);border-color:var(--g800)}
+.vm-dark .vm-body{color:rgba(255,255,255,.55)}
+.vm-dark .vm-label{color:var(--vl)}
+.vm-dark .vm-text{color:rgba(255,255,255,.6)}
+
+/* ─── PROJECTS ─── */
+#projects{padding:80px 6%;background:var(--g50)}
+.projects-wrap{max-width:1100px;margin:0 auto}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pc{background:#fff;border:1.5px solid var(--g100);border-radius:22px;overflow:hidden;transition:all .25s;position:relative}
+.pc:hover{transform:translateY(-5px);box-shadow:0 16px 50px rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)}
+.pc.feat{grid-column:span 2}
+.pthumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;position:relative}
+.pc.feat .pthumb{height:180px}
+.pbadge{position:absolute;top:10px;right:10px;background:var(--v);color:#fff;font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:8px;letter-spacing:.5px;text-transform:uppercase}
+.pb{padding:16px 18px 18px}
+.ptags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px}
+.ptag{background:var(--vs);color:var(--v);font-size:.67rem;font-weight:700;padding:3px 9px;border-radius:10px;border:1px solid var(--vb)}
+.pname{font-size:.95rem;font-weight:700;color:var(--g900);margin-bottom:6px}
+.pdesc{font-size:.8rem;color:var(--g400);line-height:1.55;margin-bottom:12px}
+.plinks{display:flex;gap:10px}
+.plink{font-size:.76rem;font-weight:600;color:var(--v);text-decoration:none;transition:opacity .2s}
+.plink:hover{opacity:.6}
+.pc-empty{border-style:dashed;background:transparent}
+.pc-empty .pname{color:var(--g200)}
+.pc-empty .pdesc{color:var(--g100)}
+
+/* ─── ART ─── */
+#art{padding:80px 6%;background:#fff}
+.art-wrap{max-width:1100px;margin:0 auto}
+.art-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ac{border-radius:20px;overflow:hidden;border:1.5px solid var(--g100);background:#fff;text-decoration:none;display:block;transition:all .2s}
+.ac:hover{transform:translateY(-4px);box-shadow:0 10px 36px rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)}
+.at{height:120px;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.ab{padding:12px 14px 14px}
+.aname{font-size:.84rem;font-weight:700;color:var(--g900);margin-bottom:3px}
+.adesc{font-size:.74rem;color:var(--g400)}
+
+/* ─── ABOUT ─── */
+#about{padding:80px 6%;background:var(--g50)}
+.about-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-photo{border-radius:28px;overflow:hidden;height:420px;border:1.5px solid rgba(124,58,237,0.1);box-shadow:0 16px 50px rgba(124,58,237,0.08)}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(20%)}
+.about-ph-empty{width:100%;height:100%;background:linear-gradient(145deg,var(--vs),rgba(124,58,237,0.02));display:flex;align-items:center;justify-content:center;color:var(--vl);font-size:4rem;opacity:.4}
+.skills{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.sk{background:#fff;border:1px solid var(--g200);color:var(--g600);font-size:.76rem;font-weight:600;padding:5px 12px;border-radius:16px;transition:all .2s}
+.sk:hover{border-color:var(--vl);color:var(--v);background:var(--vs)}
+
+/* ─── CONTACT ─── */
+#contact{padding:80px 6%;background:#fff;text-align:center}
+.contact-wrap{max-width:640px;margin:0 auto}
+#contact .sec-label{justify-content:center;display:block;text-align:center}
+#contact .sec-title{text-align:center}
+.csub{font-size:.9rem;color:var(--g400);line-height:1.65;margin:10px auto 32px;max-width:420px}
+.clinks{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:32px}
+.clink{
+  background:var(--vs);border:1px solid var(--vb);
+  color:var(--v);font-size:.82rem;font-weight:600;
+  padding:9px 18px;border-radius:22px;text-decoration:none;
+  transition:all .2s;display:flex;align-items:center;gap:7px;
+}
+.clink:hover{background:var(--vb);transform:translateY(-2px)}
+.cemail{font-family:var(--serif);font-size:1.5rem;color:var(--g900);text-decoration:none;border-bottom:2px solid var(--vb);padding-bottom:3px;transition:border-color .2s;display:inline-block}
+.cemail:hover{border-color:var(--v)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--g50);border-top:1px solid var(--g100);text-align:center;padding:22px 6%;font-size:.75rem;color:var(--g400)}
+footer span{color:var(--v)}
+
+/* ─── FADE IN ─── */
+.fi{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.fi.vis{opacity:1;transform:none}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:920px){
+  .hero-inner{flex-direction:column-reverse;text-align:center}
+  .hl{max-width:100%}
+  .hdesc{margin:0 auto 28px}
+  .hbtns{justify-content:center}
+  .hsocials{justify-content:center}
+  .photo-frame{width:450px;height:520px}
+  .ftag{bottom:-16px}
+  .vision-masonry{columns:2}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  .pc.feat{grid-column:span 1}
+  .art-grid{grid-template-columns:1fr 1fr}
+  .about-wrap{grid-template-columns:1fr}
+  .about-photo{height:280px}
+  .nav-links,.nav-pill{display:none}
+  .ham{display:flex}
+}
+@media(max-width:540px){
+  .proj-grid{grid-template-columns:1fr}
+  .vision-masonry{columns:1}
+  nav{padding:14px 5%}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo">Alvin <em>Loria</em></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#art">Art</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-pill">Say hello →</a>
+  <div class="ham" onclick="toggleMob()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mob" id="mob">
+  <a href="#home" onclick="toggleMob()">Home</a>
+  <a href="#vision" onclick="toggleMob()">Vision</a>
+  <a href="#projects" onclick="toggleMob()">Projects</a>
+  <a href="#art" onclick="toggleMob()">Art</a>
+  <a href="#about" onclick="toggleMob()">About</a>
+  <a href="#contact" onclick="toggleMob()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-blob"></div><div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div class="hl fi">
+      <div class="hero-chip"><span class="dot"></span>Open to opportunities</div>
+      <h1 class="hname">Alvin<br/><em>Loria</em></h1>
+      <p class="hrole">Full-Stack Developer · Artist · Into Health & Sports Science</p>
+      <p class="hdesc">I build digital things and draw personal ones. From rehab dashboards to character illustrations — I work at the edge of code and creativity.</p>
+      <div class="hbtns">
+        <a href="#projects" class="btn-v">View my work</a>
+        <a href="#vision" class="btn-o">My vision board</a>
+      </div>
+      <div class="hsocials">
+        <a href="https://www.linkedin.com/in/alvin-loria/" target="_blank" class="hsoc">in</a>
+        <a href="https://github.com/aj-z" target="_blank" class="hsoc">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/ajloria/" target="_blank" class="hsoc">ig</a>
+        <a href="https://cara.app/ajloria/portfolio" target="_blank" class="hsoc">ca</a>
+        <a href="https://open.spotify.com/playlist/1O965bMGakJQd8KDiChpDa" target="_blank" class="hsoc">♫</a>
+      </div>
+    </div>
+    <div class="hr fi">
+      <div class="photo-frame">
+        <!-- YOUR PHOTO — paste your real image URL below -->
+        <img src="https://alvinprofile.vercel.app/static/test3.png" alt="Alvin Loria"/>
+      </div>
+      <div class="ftag2">Dev · Creatives</div>
+      <div class="ftag">He · <span> Into Health & Sports Science</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VISION BOARD -->
+<section id="vision">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="sec-hd fi">
+      <div class="sec-label">Vision Board</div>
+      <h2 class="sec-title">What I live by</h2>
+      <p class="sec-sub">My philosophy, values, and the things that drive me — inspired by Aristotle's eudaimonia.</p>
+    </div>
+    <div class="vision-masonry fi">
+
+      <!-- MISSION -->
+      <div class="vm-item vm-mission" id="missionCard">
+        <div class="vm-body">
+          <div class="vm-label">Personal Mission</div>
+          <span class="tldr">Live a good life, be good to myself, others, and the world.</span>
+          <div class="vm-text" id="missionText">I am inspired by eudaimonia — well-being, happiness, and flourishing. I want to be remembered as someone who strived to do the greater good. <span class="tldr">Click to read more.</span></div>
+        </div>
+      </div>
+
+      <!-- IMAGE: Aristotle -->
+      <div class="vm-item">
+        <img class="vm-img" src="https://scontent.fcrk3-2.fna.fbcdn.net/v/t39.30808-6/671133082_5307904549435220_2880253365904923667_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=cHHf-mwkBvMQ7kNvwGCrQl0&_nc_oc=AdpKOwQXwG8axGoBzlYCve8TIXV4usfbWSxXPaHxEWaSCeM6zBfr0dPfINPPiCgq0k7vxyMQIWRzAnEI2k6W6giW&_nc_zt=23&_nc_ht=scontent.fcrk3-2.fna&_nc_gid=Y8T8T-WLg0mBpSzpLe-AGQ&_nc_ss=7b2a8&oh=00_Af4mwogKPJ3qPkQDH0-NjmuHOr346J9kh2RiUffFJi5eTg&oe=69FD0DB8" alt="Aristotle"/>
+        <div class="vm-body"><div class="vm-label">Inspiration</div><div class="vm-text">Inspired By Aristotle Eudaimonia, - the ripple effect of mutual improvement</div></div>
+      </div>
+
+      <!-- QUOTE -->
+      <div class="vm-item"><div class="vm-quote">Do good for me and for others. Endure hardships. Express emotions but don't be enslaved by them.</div></div>
+
+      <!-- PAPER: what brings joy -->
+      <div class="vm-item vm-paper">
+        <div class="vm-body">
+          <div class="vm-label">What brings me joy</div>
+          <div class="vm-text">Sketching in quiet spaces<br/>Journaling thoughts & reflections<br/>Reading meaningful stories<br/>Watching films & anime<br/>Deep conversations<br/>Intentional, calm living</div>
+        </div>
+      </div>
+
+      <!-- IMAGE: friends/memory -->
+      <div class="vm-item">
+        <img class="vm-img" style="width:100%; height:auto;"  src="https://media.discordapp.net/attachments/989911009189851166/1455433478278480014/IMG_1553.jpg?ex=69f82f8d&is=69f6de0d&hm=96e05da6157e66cec0a32fddd1c5d0cdf3ced720e4f73247f1864598f623c36c&=&format=webp&width=408&height=544" alt="memories with friends"/>
+        <div class="vm-body"><div class="vm-text" style="font-size:.76rem;color:var(--g400)">Memories with friends are something you'll cherish forever</div></div>
+      </div>
+
+      <!-- QUOTE 2 -->
+      <div class="vm-item"><div class="vm-quote">I connect most with those who move with intention rather than performance.</div></div>
+
+      <!-- AESTHETIC: vision note -->
+      <div class="vm-item" style="background:var(--vs);border-color:var(--vb)">
+        <div class="vm-body">
+          <div class="vm-text" style="font-family:var(--serif);font-style:italic;font-size:.88rem;color:var(--g800)">Having a vision in life isn't a bad thing. For me, it serves as a way to stay grounded. We may sway at times, but having a clear direction helps keep us steady.</div>
+        </div>
+      </div>
+
+      <!-- IMAGE: child passing knowledge -->
+      <div class="vm-item">
+        <img class="vm-img" src="https://i.pinimg.com/736x/f8/d1/53/f8d153b4f4401672e49f2759325bad07.jpg" alt="passing knowledge"/>
+        <div class="vm-body"><div class="vm-text" style="font-size:.75rem;color:var(--g400)">Passing knowledge to the next generation — letting them experience how beautiful life is</div></div>
+      </div>
+
+      <!-- PAPER: connect & communicate -->
+      <div class="vm-item vm-paper">
+        <div class="vm-body">
+          <div class="vm-label">How I connect</div>
+          <div class="vm-text">Value presence over presents<br/>Express thoughts directly & honestly<br/>Listen deeply & genuinely<br/>Offer emotional steadiness<br/>Show up when it matters</div>
+        </div>
+      </div>
+
+      <!-- FINANCE TAG -->
+      <div class="vm-item" style="background:var(--g900);border-color:#333">
+        <div class="vm-body">
+          <div class="vm-label" style="color:var(--vl)">Financial philosophy</div>
+          <div class="vm-text" style="color:rgba(255,255,255,.55);font-size:.85rem;font-weight:600">80–90% needs → savings<br/>10–20% wants</div>
+        </div>
+      </div>
+
+      <!-- Personality Tags -->
+      <div class="vm-item" style="background:var(--vs);border-color:var(--vb)">
+        <div class="vm-pill-row"><span class="vm-pill">INTJ</span>
+        <span class="vm-pill">Eudaimonia</span><span class="vm-pill">Politically aware, health-first</span>
+        <span class="vm-pill">Roman Catholic on paper</span>
+        <span class="vm-pill">Spiritual but not religious</span></div>
+        <img class="vm-img" src="big5.png" alt="passing knowledge"/>
+      </div>
+
+      <!-- QUOTE: what matters -->
+      <div class="vm-item"><div class="vm-quote">What matters to me is how someone lives, thinks, and treats people — not the label they carry.</div></div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-wrap">
+    <div class="sec-hd fi">
+      <div class="sec-label">Projects</div>
+      <h2 class="sec-title">Things I've built</h2>
+      <p class="sec-sub">A mix of health tech, interactive tools, and creative experiments.</p>
+    </div>
+    <div class="proj-grid fi">
+
+      <div class="pc feat">
+        <div class="pthumb" style="background:url(medicaldashforms.png); background-size:100% 100%; background-repeat:no-repeat"></div>
+        <div class="pbadge">Featured</div>
+        <div class="pb">
+          <div class="ptags"><span class="ptag">React</span><span class="ptag">Node.js</span><span class="ptag">Full-Stack</span><span class="ptag">Health</span></div>
+          <div class="pname">Medical Rehabilitation Dashboard</div>
+          <div class="pdesc">A full-stack dashboard for managing rehabilitation patient data — designed with real clinical workflows in mind. Connects my interest in health science and dev.</div>
+          <div class="plinks"><a href="http://aj-rehab-ph.onrender.com/" target="_blank" class="plink">↗ Live Demo</a></div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pthumb" style="background:linear-gradient(135deg,#fdf2f8,#fce7f3)">🧠</div>
+        <div class="pb">
+          <div class="ptags"><span class="ptag">Health</span><span class="ptag">Web App</span></div>
+          <div class="pname">CVSU Mental Health</div>
+          <div class="pdesc">A mental health support platform for CVSU students — resources and safe spaces.</div>
+          <div class="plinks"><a href="https://cvsu-mh.onrender.com/" target="_blank" class="plink">↗ Live Demo</a></div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pthumb" style="background:url(AnimalPersona.png); background-size:100% 150%; background-repeat:no-repeat"></div>
+        <div class="pb">
+          <div class="ptags"><span class="ptag">Interactive</span><span class="ptag">Creative</span></div>
+          <div class="pname">Animal Persona</div>
+          <div class="pdesc">Discover your animal persona — personality meets art in an interactive experience.</div>
+          <div class="plinks"><a href="https://aj-z.github.io/Animal-Persona/" target="_blank" class="plink">↗ Live Demo</a></div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pthumb" style="background:linear-gradient(135deg,#fff7ed,#fef3c7)">🎯</div>
+        <div class="pb">
+          <div class="ptags"><span class="ptag">Vision</span><span class="ptag">Portfolio</span></div>
+          <div class="pname">Vision Board</div>
+          <div class="pdesc">My personal vision board — links to all things Alvin, dev and art in one hub.</div>
+          <div class="plinks"><a href="https://aj-z.github.io/VisBoard/" target="_blank" class="plink">↗ View</a></div>
+        </div>
+      </div>
+
+      <div class="pc pc-empty">
+        <div class="pthumb" style="font-size:2rem;opacity:.2;background:transparent">+</div>
+        <div class="pb">
+          <div class="pname">Next project</div>
+          <div class="pdesc">Something is in the works.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ART -->
+<section id="art">
+  <div class="art-wrap">
+    <div class="sec-hd fi">
+      <div class="sec-label">Creative Work</div>
+      <h2 class="sec-title">The art side</h2>
+      <p class="sec-sub">Original illustrations, character designs, and visual stories.</p>
+    </div>
+    <div class="art-grid fi">
+      <a href="https://cara.app/ajloria/portfolio" target="_blank" class="ac"><div class="at" style="background:linear-gradient(135deg,#f5f3ff,#ddd6fe)">🖼️</div><div class="ab"><div class="aname">Cara Portfolio</div><div class="adesc">Full art portfolio</div></div></a>
+      <a href="https://ajcharacterdesigns.vercel.app/" target="_blank" class="ac"><div class="at" style="background:linear-gradient(135deg,#fff1f2,#fecdd3)">✏️</div><div class="ab"><div class="aname">Character Designs</div><div class="adesc">Original illustrations</div></div></a>
+      <a href="https://aj-z.github.io/Animal-Persona/" target="_blank" class="ac"><div class="at" style="background:linear-gradient(135deg,#f0fdf4,#bbf7d0)">🐺</div><div class="ab"><div class="aname">Animal Persona</div><div class="adesc">Interactive art + personality</div></div></a>
+      <a href="https://www.instagram.com/ajloria/" target="_blank" class="ac"><div class="at" style="background:linear-gradient(135deg,#fff7ed,#fed7aa)">📸</div><div class="ab"><div class="aname">Instagram</div><div class="adesc">Art drops & sketches</div></div></a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-photo fi">
+      <img src="https://alvinprofile.vercel.app/static/test3.png" alt="Alvin Loria"/>
+    </div>
+    <div class="fi">
+      <div class="sec-label">About Me</div>
+      <h2 class="sec-title">Hey, I'm Alvin</h2>
+      <p style="font-size:.9rem;color:var(--g600);line-height:1.72;margin-bottom:14px">I'm a full-stack developer and visual artist from the Philippines, currently studying BS Sports Science at CVSU. I believe the best work happens where logic and creativity meet.</p>
+      <p style="font-size:.9rem;color:var(--g600);line-height:1.72;margin-bottom:14px">Guided by Aristotle's eudaimonia — I try to live intentionally, build things that matter, and stay curious about everything from nutrition science to character design.</p>
+      <p style="font-size:.9rem;color:var(--g600);line-height:1.72;margin-bottom:22px">My main interest is understanding the mind, which branches into honing my creativity and design to express, tell stories, and convey ideas effectively. I am also interested in the ability to read and analyze data to find patterns in certain behaviors, as well as understanding the limits and ways to maintain stability in nutrition and individual well-being.</p>
+      <div class="skills">
+        <span class="sk">React</span><span class="sk">Node.js</span><span class="sk">Full-Stack Dev</span>
+        <span class="sk">Illustration</span><span class="sk">Character Design</span><span class="sk">UI/UX</span>
+        <span class="sk">Sports Science</span><span class="sk">Health Tech</span><span class="sk">Psychology</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap fi">
+    <div class="sec-label">Contact</div>
+    <h2 class="sec-title">Let's work together</h2>
+    <p class="csub">Open to dev projects, creative collaborations, and anything in between. Let's build something good.</p>
+    <div class="clinks">
+      <a href="https://www.linkedin.com/in/alvin-loria/" target="_blank" class="clink">💼 LinkedIn</a>
+      <a href="https://github.com/aj-z" target="_blank" class="clink">💻 GitHub</a>
+      <a href="https://cara.app/ajloria/portfolio" target="_blank" class="clink">🎨 Cara</a>
+      <a href="https://www.facebook.com/AAjloria" target="_blank" class="clink">📘 Facebook Art</a>
+      <a href="https://www.instagram.com/ajloria/" target="_blank" class="clink">📸 Instagram</a>
+      <a href="https://open.spotify.com/playlist/1O965bMGakJQd8KDiChpDa" target="_blank" class="clink">🎵 Playlist</a>
+    </div>
+    <a href="mailto:your@email.com" class="cemail">ajloria123@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Alvin Loria</span> — Developer · Artist · Dreamer &nbsp;✦&nbsp; Built with intention</p>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+
+// Mobile menu
+function toggleMob(){ document.getElementById('mob').classList.toggle('open') }
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}) }
+  });
+});
+
+// Scroll fade-in
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis') });
+}, {threshold: 0.1});
+document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+// Mission expand
+const mc = document.getElementById('missionCard');
+const mt = document.getElementById('missionText');
+const fullText = `What I mean by that is to be good to myself, to others, and to the world. I am inspired by the word eudaimonia, which is a combination of well-being, happiness, and flourishing. I want to be remembered as someone who strived to be good and to do the greater good, even though in reality we know how hard and complex that can be, and how often goodness is taken advantage of. Helping myself so that I can help others is also one of my missions. That’s why I believe it is necessary to strive for balance across all eight dimensions of well-being: emotional, physical, occupational, social, intellectual, environmental, financial, and spiritual. For my emotional well-being, I remind myself to accept that life is hard, and unexpected variables will always appear at unexpected times. This means both sad days and happy days will inevitably come. It helps to remember what I can control and what I cannot, and to resist the constant pull toward perfection. The physical dimension is one of the trickiest to maintain. As someone with knowledge in nutrition and exercise, I know many factors affect it. The best things I can do are to exercise when I have the time and to eat nutritious, unprocessed foods as much as I can manage. For occupational well-being, my dream job is simply one where I can help others while earning enough to cover my basic needs, save a little, and enjoy some of the experiences life has to offer. Social well-being is probably one of the hardest areas for me. Still, I strive to compromise and find common ground. If I can help someone, stay with them, and be present for them without sacrificing too much of myself, I will. I deeply value quality time with everyone I encounter. Time is precious, it shapes who we are, and once spent, it cannot be taken back. For spiritual well-being, I consider myself an agnostic-theist. I want to believe in a higher being watching over us, though I am not certain one exists. But spiritual well-being does not necessarily mean religion, it is about meaning and a way of life. As long as I hold onto the ideal of eudaimonia, I feel at peace with it. In terms of intellectual well-being, I do not see myself as a genius or particularly smart. I am simply curious about how to become a better version of myself and how to do better for others. I am persistent in learning what I need to know to live well and, importantly, I want to do what I can to avoid dementia or Alzheimer’s, since I truly value memories and life. Environmental well-being is also a challenge, but I try to do my part by reusing what I can, avoiding unnecessary purchases, not littering, and participating in eco-friendly practices as much as I can manage. Finally, financial well-being connects to all the other dimensions. By buying fewer wants, I can save money. By caring for my health, I avoid costly medical bills. By building different skills and knowledge, I can help more people and create more opportunities for income. By taking care of the environment through recycling, cleaning, and repairing things, I can reduce risks that lead to illness and expenses. And by enduring greed, selfishness, and unnecessary desires, I can maintain financial stability. In the end, it is all a ripple effect, one dimension cannot exist without the others.Click to collapse.`;
+const shortText = `I am inspired by eudaimonia — well-being, happiness, and flourishing. I want to be remembered as someone who strived to do the greater good. Click to read more.`;
+let expanded = false;
+mc.addEventListener('click', () => {
+  expanded = !expanded;
+  mt.textContent = expanded ? fullText : shortText;
+});
+</script>
+</body>
+</html>
