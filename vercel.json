@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/illust/:path*",
+      "destination": "https://ajloriaillust.vercel.app/:path*"
+    }
+  ]
+}
