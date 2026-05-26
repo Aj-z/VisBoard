@@ -1,9 +1,12 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/illust/:path*",
-      "destination": "https://ajloriaillust.vercel.app/:path*",
-      "permanent": false
+      "destination": "https://ajloriaillust.vercel.app/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
